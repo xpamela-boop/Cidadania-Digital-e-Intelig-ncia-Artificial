@@ -1,18 +1,18 @@
 const perguntas = [
     {
-        texto: "Você recebeu um vídeo de um cientista famoso no WhatsApp dizendo que a Terra vai parar de girar amanhã. A voz parece dele, mas os lábios dele estão meio borrados e piscam estranho. É real?",
+        texto: "Você recebeu um vídeo de um cientista famoso no WhatsApp dizendo que a Terra vai parar de girar amanhã. A voz parece dele, mas os lábios estão levemente borrados e piscam de forma estranha. É real?",
         respostaCorreta: false,
-        explicacao: "Falso! Movimentos estranhos nos lábios e piscadas desalinhadas são sinais clássicos de vídeos manipulados por Inteligência Artificial (Deepfakes)."
+        explicacao: "Falso! Movimentos artificiais nos lábios e falhas visuais ao redor dos olhos ou boca são indícios clássicos de vídeos manipulados por IA (Deepfakes)."
     },
     {
         texto: "Um portal de notícias de grande credibilidade publicou uma matéria assinada por jornalistas reais alertando sobre um novo golpe na internet. É seguro compartilhar?",
         respostaCorreta: true,
-        explicacao: "Verdadeiro! Checar se a notícia está em portais jornalísticos conhecidos e confiáveis é uma excelente prática de cidadania digital."
+        explicacao: "Verdadeiro! Cruzar informações e buscar fontes jornalísticas conhecidas e com expediente transparente é uma excelente prática de cidadania digital."
     },
     {
-        texto: "Um áudio de um candidato à prefeitura circulou na escola falando palavrões. O áudio não tem ruído de fundo nenhum, parece gravado em estúdio perfeito, mas o ritmo da fala está robótico. Pode ser falso?",
-        respostaCorreta: false, // Falso = significa que o áudio é falso/manipulado
-        explicacao: "Falso! Clonagem de voz por IA costuma deixar a fala sem ritmo natural (robótica) e sem os barulhos normais do ambiente onde a pessoa estaria."
+        texto: "Um áudio atribuído a um diretor de escola circula nos grupos dos alunos cancelando as aulas. O áudio não tem ruído de fundo, a voz soa perfeitamente limpa, mas o ritmo da fala é robótico e sem entonação emocional. É autêntico?",
+        respostaCorreta: false,
+        explicacao: "Falso! Ferramentas de clonagem de voz por IA costumam gerar falhas na cadência natural da fala, resultando em frases excessivamente robóticas ou sem respiração adequada."
     }
 ];
 
@@ -20,9 +20,13 @@ let indiceAtual = 0;
 let acertos = 0;
 
 function carregarPergunta() {
+    // Esconde o container de feedback e reativa os botões de resposta
+    document.getElementById("container-feedback").classList.add("escondido");
+    alternarBotoesResposta(false);
+
     if (indiceAtual < perguntas.length) {
+        document.getElementById("progresso").innerText = `Pergunta ${indiceAtual + 1} de ${perguntas.length}`;
         document.getElementById("pergunta").innerText = perguntas[indiceAtual].texto;
-        document.getElementById("feedback").classList.add("escondido");
     } else {
         mostrarResultadoFinal();
     }
@@ -30,9 +34,12 @@ function carregarPergunta() {
 
 function verificarResposta(respostaUsuario) {
     const feedbackDiv = document.getElementById("feedback");
+    const containerFeedback = document.getElementById("container-feedback");
     const perguntaAtual = perguntas[indiceAtual];
 
-    feedbackDiv.classList.remove("escondido");
+    // Desativa os botões para o usuário não clicar múltiplas vezes
+    alternarBotoesResposta(true);
+    containerFeedback.classList.remove("escondido");
 
     if (respostaUsuario === perguntaAtual.respostaCorreta) {
         feedbackDiv.className = "correto";
@@ -40,19 +47,35 @@ function verificarResposta(respostaUsuario) {
         acertos++;
     } else {
         feedbackDiv.className = "errado";
-        feedbackDiv.innerText = "❌ Ops! " + perguntaAtual.explicacao;
+        feedbackDiv.innerText = "❌ Ops, não é bem assim! " + perguntaAtual.explicacao;
     }
+}
 
-    // Avança para a próxima pergunta após 4 segundos para dar tempo de ler o feedback
+function avancarPergunta() {
     indiceAtual++;
-    setTimeout(carregarPergunta, 4500);
+    carregarPergunta();
+}
+
+function alternarBotoesResposta(desabilitar) {
+    document.getElementById("btn-verdadeiro").disabled = desabilitar;
+    document.getElementById("btn-falso").disabled = desabilitar;
 }
 
 function mostrarResultadoFinal() {
     document.getElementById("caixa-jogo").classList.add("escondido");
     const resultadoDiv = document.getElementById("resultado-final");
     resultadoDiv.classList.remove("escondido");
-    document.getElementById("pontuacao").innerText = `Você acertou ${acertos} de ${perguntas.length} desafios!`;
+    
+    let mensagemDesempenho = "";
+    if (acertos === perguntas.length) {
+        mensagemDesempenho = "Excelente! Você é um verdadeiro Detetive Digital e sabe se proteger da desinformação. 🛡️";
+    } else if (acertos > 0) {
+        mensagemDesempenho = "Bom trabalho! Mas fique atento aos detalhes para não ser enganado por mídias manipuladas. 🔍";
+    } else {
+        mensagemDesempenho = "Cuidado! É importante estudar mais sobre deepfakes para navegar na internet com segurança. ⚠️";
+    }
+
+    document.getElementById("pontuacao").innerHTML = `Você acertou <strong>${acertos}</strong> de <strong>${perguntas.length}</strong> desafios.<br><br>${mensagemDesempenho}`;
 }
 
 function reiniciarJogo() {
@@ -63,5 +86,5 @@ function reiniciarJogo() {
     carregarPergunta();
 }
 
-// Inicia o jogo ao carregar a página
+// Inicializa o jogo
 carregarPergunta();
