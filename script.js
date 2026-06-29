@@ -1,77 +1,67 @@
-// Banco de perguntas do Quiz
-const questions = [
+const perguntas = [
     {
-        text: "Uma deepfake pode imitar perfeitamente a voz de uma pessoa usando apenas alguns segundos de uma gravação real.",
-        answer: true,
-        explanation: "Correto! Inteligências Artificiais avançadas conseguem clonar vozes com amostras curtíssimas de áudio."
+        texto: "Você recebeu um vídeo de um cientista famoso no WhatsApp dizendo que a Terra vai parar de girar amanhã. A voz parece dele, mas os lábios dele estão meio borrados e piscam estranho. É real?",
+        respostaCorreta: false,
+        explicacao: "Falso! Movimentos estranhos nos lábios e piscadas desalinhadas são sinais clássicos de vídeos manipulados por Inteligência Artificial (Deepfakes)."
     },
     {
-        text: "Todas as imagens e vídeos que circulam nas redes sociais com o selo de 'Urgente' são verdadeiros.",
-        answer: false,
-        explanation: "Falso! Muitas fake news utilizam termos alarmistas como 'Urgente' ou 'Alerta' para gerar pânico e compartilhamentos rápidos."
+        texto: "Um portal de notícias de grande credibilidade publicou uma matéria assinada por jornalistas reais alertando sobre um novo golpe na internet. É seguro compartilhar?",
+        respostaCorreta: true,
+        explicacao: "Verdadeiro! Checar se a notícia está em portais jornalísticos conhecidos e confiáveis é uma excelente prática de cidadania digital."
     },
     {
-        text: "Movimentos oculares estranhos ou a falta de piscadas naturais no rosto de alguém em um vídeo podem ser sinais de um vídeo gerado por IA.",
-        answer: true,
-        explanation: "Correto! Muitas ferramentas de IA ainda falham em reproduzir perfeitamente reflexos e piscadas biológicas."
-    },
-    {
-        text: "Se uma notícia foi compartilhada por um amigo ou parente próximo no WhatsApp, significa que ela já foi checada e é segura.",
-        answer: false,
-        explanation: "Falso! Pessoas próximas também podem ser enganadas e repassar desinformação sem saber."
+        texto: "Um áudio de um candidato à prefeitura circulou na escola falando palavrões. O áudio não tem ruído de fundo nenhum, parece gravado em estúdio perfeito, mas o ritmo da fala está robótico. Pode ser falso?",
+        respostaCorreta: false, // Falso = significa que o áudio é falso/manipulado
+        explicacao: "Falso! Clonagem de voz por IA costuma deixar a fala sem ritmo natural (robótica) e sem os barulhos normais do ambiente onde a pessoa estaria."
     }
 ];
 
-let currentQuestionIndex = 0;
-let score = 0;
+let indiceAtual = 0;
+let acertos = 0;
 
-// Mapeamento dos elementos do HTML
-const questionTextElement = document.getElementById("question-text");
-const feedbackElement = document.getElementById("feedback");
-const scoreElement = document.getElementById("score");
-const btnFato = document.getElementById("btn-fato");
-const btnFake = document.getElementById("btn-fake");
-
-function loadQuestion() {
-    // Limpa feedbacks anteriores e reativa os botões
-    feedbackElement.textContent = "";
-    feedbackElement.className = "feedback-box";
-    btnFato.disabled = false;
-    btnFake.disabled = false;
-    
-    if (currentQuestionIndex < questions.length) {
-        questionTextElement.textContent = questions[currentQuestionIndex].text;
+function carregarPergunta() {
+    if (indiceAtual < perguntas.length) {
+        document.getElementById("pergunta").innerText = perguntas[indiceAtual].texto;
+        document.getElementById("feedback").classList.add("escondido");
     } else {
-        // Fim do Jogo
-        questionTextElement.textContent = "Parabéns! Você concluiu o desafio de Cidadania Digital.";
-        document.querySelector(".btn-group").style.display = "none";
-        feedbackElement.textContent = "Obrigado por jogar e combater a desinformação!";
-        feedbackElement.className = "feedback-box";
+        mostrarResultadoFinal();
     }
 }
 
-function checkAnswer(userAnswer) {
-    // Desativa os botões temporariamente para evitar cliques duplos durante o feedback
-    btnFato.disabled = true;
-    btnFake.disabled = true;
+function verificarResposta(respostaUsuario) {
+    const feedbackDiv = document.getElementById("feedback");
+    const perguntaAtual = perguntas[indiceAtual];
 
-    const currentQuestion = questions[currentQuestionIndex];
-    
-    if (userAnswer === currentQuestion.answer) {
-        score++;
-        feedbackElement.textContent = "Acertou! " + currentQuestion.explanation;
-        feedbackElement.className = "feedback-box correct";
+    feedbackDiv.classList.remove("escondido");
+
+    if (respostaUsuario === perguntaAtual.respostaCorreta) {
+        feedbackDiv.className = "correto";
+        feedbackDiv.innerText = "🎯 Parabéns, você acertou! " + perguntaAtual.explicacao;
+        acertos++;
     } else {
-        feedbackElement.textContent = "Errou... " + currentQuestion.explanation;
-        feedbackElement.className = "feedback-box incorrect";
+        feedbackDiv.className = "errado";
+        feedbackDiv.innerText = "❌ Ops! " + perguntaAtual.explicacao;
     }
-    
-    scoreElement.textContent = `Pontuação: ${score}`;
-    currentQuestionIndex++;
-    
-    // Avança para a próxima pergunta após 3.5 segundos
-    setTimeout(loadQuestion, 3500);
+
+    // Avança para a próxima pergunta após 4 segundos para dar tempo de ler o feedback
+    indiceAtual++;
+    setTimeout(carregarPergunta, 4500);
 }
 
-// Inicializa a primeira pergunta assim que a página carregar
-window.onload = loadQuestion;
+function mostrarResultadoFinal() {
+    document.getElementById("caixa-jogo").classList.add("escondido");
+    const resultadoDiv = document.getElementById("resultado-final");
+    resultadoDiv.classList.remove("escondido");
+    document.getElementById("pontuacao").innerText = `Você acertou ${acertos} de ${perguntas.length} desafios!`;
+}
+
+function reiniciarJogo() {
+    indiceAtual = 0;
+    acertos = 0;
+    document.getElementById("caixa-jogo").classList.remove("escondido");
+    document.getElementById("resultado-final").classList.add("escondido");
+    carregarPergunta();
+}
+
+// Inicia o jogo ao carregar a página
+carregarPergunta();
