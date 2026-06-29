@@ -8,27 +8,33 @@
 </head>
 <body>
 
-    <div class="container-jogo">
-        <h1>🕵️‍♂️ Desafio Detetive Digital</h1>
-        <p>Analise a situação e descubra se a mídia é Real ou uma Deepfake/Fake News!</p>
+    <main class="container-jogo">
+        <header>
+            <h1>🕵️‍♂️ Desafio Detetive Digital</h1>
+            <p>Analise os cenários e descubra se a mídia é Real ou uma Deepfake/Fake News!</p>
+        </header>
         
-        <div id="caixa-jogo">
+        <section id="caixa-jogo">
+            <div id="progresso">Pergunta 1 de 3</div>
             <div id="pergunta">Carregando pergunta...</div>
             
             <div class="opcoes">
-                <button onclick="verificarResposta(true)">🟢 Verdadeiro / Real</button>
-                <button onclick="verificarResposta(false)">🔴 Falso / Deepfake</button>
+                <button id="btn-verdadeiro" onclick="verificarResposta(true)">🟢 Verdadeiro / Real</button>
+                <button id="btn-falso" onclick="verificarResposta(false)">🔴 Falso / Deepfake</button>
             </div>
             
-            <div id="feedback" class="escondido"></div>
-        </div>
+            <div id="container-feedback" class="escondido">
+                <div id="feedback"></div>
+                <button id="btn-proximo" onclick="avancarPergunta()">Avançar ➡️</button>
+            </div>
+        </section>
 
-        <div id="resultado-final" class="escondido">
-            <h2>Fim do Jogo!</h2>
+        <section id="resultado-final" class="escondido">
+            <h2>Desafio Concluído!</h2>
             <p id="pontuacao"></p>
-            <button onclick="reiniciarJogo()">Jogar Novamente 🔄</button>
-        </div>
-    </div>
+            <button class="btn-reiniciar" onclick="reiniciarJogo()">Jogar Novamente 🔄</button>
+        </section>
+    </main>
 
     <script src="script-jogo.js"></script>
 </body>
