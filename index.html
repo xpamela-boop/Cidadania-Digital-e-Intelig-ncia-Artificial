@@ -3,62 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidadania Digital e IA</title>
+    <title>Cidadania Digital e IA em 2026</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="container">
-            <h1>Cidadania Digital & IA</h1>
+            <h1>Cidadania Digital & Inteligência Artificial</h1>
             <p>O Impacto das Deepfakes e da Desinformação na Sociedade</p>
         </div>
     </header>
 
     <nav>
-        <a href="#sobre">Sobre</a>
-        <a href="#deepfakes">Deepfakes</a>
-        <a href="#identificar">Como Identificar</a>
-        <a href="#quiz">Teste seus Conhecimentos</a>
+        <a href="#sobre">Sobre o Projeto</a>
+        <a href="#deepfakes">O que são Deepfakes</a>
+        <a href="#jogo">Jogar Quiz</a>
     </nav>
 
     <main class="container">
         
         <section id="sobre">
             <h2>Conscientização na Escola</h2>
-            <p>Com o avanço da Inteligência Artificial, a criação de conteúdos falsos ficou mais fácil e realista. Exercer a <strong>cidadania digital</strong> significa aprender a navegar de forma segura, ética e crítica na internet, combatendo a desinformação.</p>
+            <div class="flex-container">
+                <div class="texto">
+                    <p>Com o avanço das ferramentas de IA, o combate às <em>fake news</em> automatizadas tornou-se um desafio urgente. Ser um cidadão digital significa verificar fontes, proteger dados e não espalhar boatos.</p>
+                </div>
+                <div class="imagem-box">
+                    <img src="banner.jpg" alt="Ilustração de Cidadania Digital" onerror="this.src='https://placehold.co/400x250?text=Sua+Imagem+Aqui'">
+                </div>
+            </div>
         </section>
 
-        <section id="deepfakes" class="card">
-            <h2>O que são Deepfakes?</h2>
-            <p>Deepfakes são vídeos, áudios ou imagens manipulados por meio de Inteligência Artificial. A tecnologia consegue trocar rostos e clonar vozes de forma tão convincente que parece real. Quando usada de má-fé, pode arruinar reputações e espalhar notícias falsas (fake news) em massa.</p>
+        <section id="deepfakes">
+            <h2>Como Identificar Mídias Manipuladas</h2>
+            <p>Deepfakes usam IA para clonar vozes e trocar rostos em vídeos. Fique atento a piscadas não naturais, falhas nas bordas do rosto e áudios dessincronizados!</p>
         </section>
 
-        <section id="identificar">
-            <h2>Boas Práticas: Como Identificar Mídias Manipuladas</h2>
-            <ul>
-                <li><strong>Pisque os olhos:</strong> Muitas deepfakes em vídeo têm dificuldade em reproduzir o piscar de olhos natural.</li>
-                <li><strong>Preste atenção às bordas:</strong> Verifique o contorno do rosto, orelhas e cabelos. Desfocados ou sombras estranhas são sinais de alerta.</li>
-                <li><strong>Analise o áudio:</strong> Vozes robóticas, pausas não naturais ou falta de sincronia com os lábios indicam manipulação.</li>
-                <li><strong>Verifique a fonte:</strong> A notícia saiu em portais de jornalismo confiáveis? Não compartilhe antes de checar!</li>
-            </ul>
-        </section>
-
-        <section id="quiz" class="card">
-            <h2>Quiz da Verdade: Você sabe identificar?</h2>
-            <p>Responda à pergunta abaixo para testar sua atenção:</p>
-            <div class="quiz-container">
-                <p class="question">Se você receber um vídeo de um influenciador famoso pedindo dinheiro urgente em uma rede social nova, o que você faz?</p>
-                <button class="quiz-btn" onclick="verificarResposta(false)">Acredito e compartilho, afinal o rosto e a voz são dele.</button>
-                <button class="quiz-btn" onclick="verificarResposta(true)">Desconfio, procuro em canais oficiais e não compartilho.</button>
-                <p id="resultado-quiz"></p>
+        <section id="jogo" class="game-section">
+            <h2>🎮 Jogo: Detetive Digital</h2>
+            <p>Analise a situação abaixo e escolha a decisão correta para vencer o jogo!</p>
+            
+            <div id="quiz-container">
+                <p id="pergunta" class="question">Carregando pergunta...</p>
+                <div id="alternativas"></div>
+                <p id="resultado"></p>
+                <button id="btn-proximo" onclick="proximaPergunta()" style="display:none;">Próxima Pergunta</button>
             </div>
         </section>
 
     </main>
 
     <footer>
-        <p>&copy; 2026 - Projeto Escolar de Cidadania Digital. Desenvolvido com HTML, CSS e JS.</p>
+        <p>&copy; 2026 - Projeto Escolar #cidadaniadigital2026. Feito com HTML, CSS e JS.</p>
     </footer>
 
     <script src="script.js"></script>
