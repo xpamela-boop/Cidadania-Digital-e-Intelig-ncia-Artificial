@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidadania Digital e IA em 2026</title>
+    <title>Cidadania Digital e IA</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="container">
-            <h1>Cidadania Digital & Inteligência Artificial</h1>
+            <h1>Cidadania Digital & IA</h1>
             <p>O Impacto das Deepfakes e da Desinformação na Sociedade</p>
         </div>
     </header>
@@ -18,44 +18,64 @@
     <nav>
         <a href="#sobre">Sobre o Projeto</a>
         <a href="#deepfakes">O que são Deepfakes</a>
-        <a href="#jogo">Jogar Quiz</a>
+        <a href="#jogo">Jogar: Detetive Digital</a>
     </nav>
 
     <main class="container">
         
-        <section id="sobre">
-            <h2>Conscientização na Escola</h2>
-            <div class="flex-container">
-                <div class="texto">
-                    <p>Com o avanço das ferramentas de IA, o combate às <em>fake news</em> automatizadas tornou-se um desafio urgente. Ser um cidadão digital significa verificar fontes, proteger dados e não espalhar boatos.</p>
-                </div>
-                <div class="imagem-box">
-                    <img src="banner.jpg" alt="Ilustração de Cidadania Digital" onerror="this.src='https://placehold.co/400x250?text=Sua+Imagem+Aqui'">
+        <section id="sobre" class="grid-section">
+            <div class="texto">
+                <h2>Conscientização na Escola</h2>
+                <p>Com o avanço das ferramentas de Inteligência Artificial, combater as <em>fake news</em> automatizadas tornou-se um desafio urgente. Ser um cidadão digital em 2026 exige saber verificar fontes, proteger seus dados e analisar criticamente os conteúdos antes de compartilhar.</p>
+            </div>
+            <div class="imagem-container">
+                <div class="placeholder-img">
+                    <span>[ Imagem: Cidadania Digital ]</span>
                 </div>
             </div>
         </section>
 
-        <section id="deepfakes">
-            <h2>Como Identificar Mídias Manipuladas</h2>
-            <p>Deepfakes usam IA para clonar vozes e trocar rostos em vídeos. Fique atento a piscadas não naturais, falhas nas bordas do rosto e áudios dessincronizados!</p>
+        <section id="deepfakes" class="grid-section reverse">
+            <div class="texto">
+                <h2>Como Identificar Mídias Manipuladas</h2>
+                <p>As deepfakes utilizam algoritmos de IA para clonar vozes e trocar rostos em vídeos com alto realismo. Para não ser enganado, fique atento a detalhes como:</p>
+                <ul>
+                    <li>Piscadas de olhos ausentes ou não naturais;</li>
+                    <li>Erros de iluminação e sombras estranhas no contorno do rosto;</li>
+                    <li>Áudios levemente dessincronizados do movimento labial.</li>
+                </ul>
+            </div>
+            <div class="imagem-container">
+                <div class="placeholder-img">
+                    <span>[ Imagem: Análise de Deepfake ]</span>
+                </div>
+            </div>
         </section>
 
-        <section id="jogo" class="game-section">
+        <section id="jogo" class="card-game">
             <h2>🎮 Jogo: Detetive Digital</h2>
-            <p>Analise a situação abaixo e escolha a decisão correta para vencer o jogo!</p>
+            <p>Analise os casos abaixo e tome a decisão correta para identificar manipulações e deter a desinformação!</p>
             
-            <div id="quiz-container">
-                <p id="pergunta" class="question">Carregando pergunta...</p>
-                <div id="alternativas"></div>
-                <p id="resultado"></p>
-                <button id="btn-proximo" onclick="proximaPergunta()" style="display:none;">Próxima Pergunta</button>
+            <div class="quiz-box">
+                <div class="status-painel">
+                    <span>Pergunta: <strong id="num-pergunta">1</strong>/3</span>
+                    <span>Pontuação: <strong id="pontuacao">0</strong></span>
+                </div>
+                
+                <p id="enunciado" class="question">Carregando pergunta...</p>
+                
+                <div id="opcoes-container"></div>
+                
+                <div id="feedback" class="feedback oculto"></div>
+                
+                <button id="btn-proximo" class="btn-next oculto" onclick="proximaFase()">Avançar ➡️</button>
             </div>
         </section>
 
     </main>
 
     <footer>
-        <p>&copy; 2026 - Projeto Escolar #cidadaniadigital2026. Feito com HTML, CSS e JS.</p>
+        <p>&copy; 2026 - Campanha de Conscientização Escolar. Projeto Obrigatório #cidadaniadigital2026</p>
     </footer>
 
     <script src="script.js"></script>
