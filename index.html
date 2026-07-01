@@ -3,39 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz: Detetive Digital</title>
-    <link rel="stylesheet" href="style-jogo.css">
+    <title>Cidadania Digital e IA</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <main class="container-jogo">
-        <header>
-            <h1>🕵️‍♂️ Desafio Detetive Digital</h1>
-            <p>Analise os cenários e descubra se a mídia é Real ou uma Deepfake/Fake News!</p>
-        </header>
+    <header>
+        <div class="container">
+            <h1>Cidadania Digital & IA</h1>
+            <p>O Impacto das Deepfakes e da Desinformação na Sociedade</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#deepfakes">Deepfakes</a>
+        <a href="#identificar">Como Identificar</a>
+        <a href="#quiz">Teste seus Conhecimentos</a>
+    </nav>
+
+    <main class="container">
         
-        <section id="caixa-jogo">
-            <div id="progresso">Pergunta 1 de 3</div>
-            <div id="pergunta">Carregando pergunta...</div>
-            
-            <div class="opcoes">
-                <button id="btn-verdadeiro" onclick="verificarResposta(true)">🟢 Verdadeiro / Real</button>
-                <button id="btn-falso" onclick="verificarResposta(false)">🔴 Falso / Deepfake</button>
-            </div>
-            
-            <div id="container-feedback" class="escondido">
-                <div id="feedback"></div>
-                <button id="btn-proximo" onclick="avancarPergunta()">Avançar ➡️</button>
+        <section id="sobre">
+            <h2>Conscientização na Escola</h2>
+            <p>Com o avanço da Inteligência Artificial, a criação de conteúdos falsos ficou mais fácil e realista. Exercer a <strong>cidadania digital</strong> significa aprender a navegar de forma segura, ética e crítica na internet, combatendo a desinformação.</p>
+        </section>
+
+        <section id="deepfakes" class="card">
+            <h2>O que são Deepfakes?</h2>
+            <p>Deepfakes são vídeos, áudios ou imagens manipulados por meio de Inteligência Artificial. A tecnologia consegue trocar rostos e clonar vozes de forma tão convincente que parece real. Quando usada de má-fé, pode arruinar reputações e espalhar notícias falsas (fake news) em massa.</p>
+        </section>
+
+        <section id="identificar">
+            <h2>Boas Práticas: Como Identificar Mídias Manipuladas</h2>
+            <ul>
+                <li><strong>Pisque os olhos:</strong> Muitas deepfakes em vídeo têm dificuldade em reproduzir o piscar de olhos natural.</li>
+                <li><strong>Preste atenção às bordas:</strong> Verifique o contorno do rosto, orelhas e cabelos. Desfocados ou sombras estranhas são sinais de alerta.</li>
+                <li><strong>Analise o áudio:</strong> Vozes robóticas, pausas não naturais ou falta de sincronia com os lábios indicam manipulação.</li>
+                <li><strong>Verifique a fonte:</strong> A notícia saiu em portais de jornalismo confiáveis? Não compartilhe antes de checar!</li>
+            </ul>
+        </section>
+
+        <section id="quiz" class="card">
+            <h2>Quiz da Verdade: Você sabe identificar?</h2>
+            <p>Responda à pergunta abaixo para testar sua atenção:</p>
+            <div class="quiz-container">
+                <p class="question">Se você receber um vídeo de um influenciador famoso pedindo dinheiro urgente em uma rede social nova, o que você faz?</p>
+                <button class="quiz-btn" onclick="verificarResposta(false)">Acredito e compartilho, afinal o rosto e a voz são dele.</button>
+                <button class="quiz-btn" onclick="verificarResposta(true)">Desconfio, procuro em canais oficiais e não compartilho.</button>
+                <p id="resultado-quiz"></p>
             </div>
         </section>
 
-        <section id="resultado-final" class="escondido">
-            <h2>Desafio Concluído!</h2>
-            <p id="pontuacao"></p>
-            <button class="btn-reiniciar" onclick="reiniciarJogo()">Jogar Novamente 🔄</button>
-        </section>
     </main>
 
-    <script src="script-jogo.js"></script>
+    <footer>
+        <p>&copy; 2026 - Projeto Escolar de Cidadania Digital. Desenvolvido com HTML, CSS e JS.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
